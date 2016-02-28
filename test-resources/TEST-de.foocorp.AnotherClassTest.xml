@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.foocorp.AnotherClassTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2016-02-25T12:32:46" hostname="nb162" time="0.001">
+  <properties/>
+  <testcase name="testMult" classname="de.foocorp.AnotherClassTest" time="0.001">
+    <failure message="java.lang.AssertionError: expected:&lt;0&gt; but was:&lt;10&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;0&gt; but was:&lt;10&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:743)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:555)
+	at org.junit.Assert.assertEquals(Assert.java:542)
+	at de.foocorp.AnotherClassTest.testMult(AnotherClassTest.java:11)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

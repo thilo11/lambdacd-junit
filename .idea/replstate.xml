@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ReplState" timestamp="1456655255762">{:repl-history {:ide [], :local [&quot;(map #{:label (+ % 1)} [1 2 3])&quot; &quot;(map #({:label (+ % 1)}) [1 2 3])&quot; &quot;(map {:label (+ % 1)} [1 2 3])&quot; &quot;(map #(hash-map :label (+ % 1)) [1 2 3])&quot; &quot;(flatten [1 2 3])&quot; &quot;(flatten [1 2 3 [4 5]])&quot;], :remote []}}</component>
+</project>
