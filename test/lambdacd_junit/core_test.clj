@@ -26,7 +26,10 @@
                    :raw   "java.lang.AssertionError: expected:<1> but was:<10>\\n\\tat org.junit.Assert.fail(Assert.java:88)\\n\\tat org.junit.Assert.failNotEquals(Assert.java:743)\\n\\tat"}))
 
 (def report-out
-  {:details '({:details ({:details ({:label "testMult{:time \"0.001\", :classname \"de.foocorp.AnotherClassTest\", :type \"java.lang.AssertionError\", :message \"java.lang.AssertionError: expected:<0> but was:<10>\"}"
+  {:details '({:details ({:details ({:label "testMult1{:time \"0.002\", :classname \"de.foocorp.AnotherClassNoFailuresTest\"}"}
+                                     {:label "testMult2{:time \"0.0\", :classname \"de.foocorp.AnotherClassNoFailuresTest\"}"})
+                          :label   "de.foocorp.AnotherClassNoFailuresTest{:time \"0.002\", :hostname \"nb162\", :timestamp \"2016-03-10T16:21:21\", :errors \"0\", :failures \"0\", :skipped \"0\", :tests \"2\"}"}
+                          {:details ({:label "testMult{:time \"0.001\", :classname \"de.foocorp.AnotherClassTest\", :type \"java.lang.AssertionError\", :message \"java.lang.AssertionError: expected:<0> but was:<10>\"}"
                                      :raw   "java.lang.AssertionError: expected:<0> but was:<10>
 \tat org.junit.Assert.fail(Assert.java:88)
 \tat org.junit.Assert.failNotEquals(Assert.java:743)

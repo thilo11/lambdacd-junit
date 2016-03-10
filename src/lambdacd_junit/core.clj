@@ -5,6 +5,15 @@
   (:import (java.io File ByteArrayInputStream)
            (java.nio.file Paths)))
 
+(defn ?assoc
+  "Same as assoc, but skip the assoc if v is nil"
+  [m & kvs]
+  (->> kvs
+       (partition 2)
+       (filter second)
+       flatten
+       (apply assoc m)))
+
 (defn- parse-xml-file [filename]
   (-> (slurp filename)
       (.getBytes)
@@ -25,8 +34,8 @@
   (->> (:content testsuite)
        (filter #(= (:tag %) :testcase))
        (map testcase-from-raw)
-       (map #(hash-map :label (str (:name %) (dissoc % :name :stacktrace))
-                       :raw (:stacktrace %) ))))
+       (map #(?assoc {} :label (str (:name %) (dissoc % :name :stacktrace))
+                     :raw (:stacktrace %) ))))
 
 (defn- junit4-report-for-test-suite [filename]
   (let [testsuite (parse-xml-file filename)]
