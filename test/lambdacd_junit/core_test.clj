@@ -30,7 +30,7 @@
                                      {:label "testMult2{:time \"0.0\", :classname \"de.foocorp.AnotherClassNoFailuresTest\"}"})
                           :label   "de.foocorp.AnotherClassNoFailuresTest{:time \"0.002\", :hostname \"nb162\", :timestamp \"2016-03-10T16:21:21\", :errors \"0\", :failures \"0\", :skipped \"0\", :tests \"2\"}"}
                           {:details ({:label "testMult{:time \"0.001\", :classname \"de.foocorp.AnotherClassTest\", :type \"java.lang.AssertionError\", :message \"java.lang.AssertionError: expected:<0> but was:<10>\"}"
-                                     :raw   "java.lang.AssertionError: expected:<0> but was:<10>
+                                      :raw   "java.lang.AssertionError: expected:<0> but was:<10>
 \tat org.junit.Assert.fail(Assert.java:88)
 \tat org.junit.Assert.failNotEquals(Assert.java:743)
 \tat org.junit.Assert.assertEquals(Assert.java:118)
@@ -38,7 +38,7 @@
 \tat org.junit.Assert.assertEquals(Assert.java:542)
 \tat de.foocorp.AnotherClassTest.testMult(AnotherClassTest.java:11)
 "})
-                          :label   "de.foocorp.AnotherClassTest{:time \"0.001\", :hostname \"nb162\", :timestamp \"2016-02-25T12:32:46\", :errors \"0\", :failures \"1\", :skipped \"0\", :tests \"1\"}"}
+                           :label   "de.foocorp.AnotherClassTest{:time \"0.001\", :hostname \"nb162\", :timestamp \"2016-02-25T12:32:46\", :errors \"0\", :failures \"1\", :skipped \"0\", :tests \"1\"}"}
                           {:details ({:label "testPlus{:time \"0.0\", :classname \"de.foocorp.MainClassTest\", :type \"java.lang.AssertionError\", :message \"java.lang.AssertionError: expected:<9> but was:<8>\"}"
                                       :raw   "java.lang.AssertionError: expected:<9> but was:<8>
 \tat org.junit.Assert.fail(Assert.java:88)
@@ -49,8 +49,8 @@
 \tat de.foocorp.MainClassTest.testPlus(MainClassTest.java:11)
 "})
                            :label   "de.foocorp.MainClassTest{:time \"0.0\", :hostname \"nb162\", :timestamp \"2016-02-25T12:32:46\", :errors \"0\", :failures \"1\", :skipped \"0\", :tests \"1\"}"})
-               :label   "Junit test results"})
-   :success false})
+               :label   "Junit test results 1"})
+   :status :failure})
 
 (deftest testcase-from-raw-test
   (testing "testcase-from-raw-test"
@@ -64,7 +64,8 @@
 
 (deftest junit4-reports-test
   (testing "junit4-reports-test"
-    (let [ctx {:success false}
-          cwd "./test-resources/"]
+    (let [ctx {:status :failure}
+          args {:cwd "./"}
+          path "test-resources/"]
       (is (= report-out
-             (junit4-reports ctx cwd [#"TEST-.*"]))))))
+             (junit4-reports ctx args path "Junit test results 1" [#"TEST-.*"]))))))

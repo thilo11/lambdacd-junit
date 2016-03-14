@@ -35,7 +35,7 @@
        (filter #(= (:tag %) :testcase))
        (map testcase-from-raw)
        (map #(?assoc {} :label (str (:name %) (dissoc % :name :stacktrace))
-                     :raw (:stacktrace %) ))))
+                     :raw (:stacktrace %)))))
 
 (defn- junit4-report-for-test-suite [filename]
   (let [testsuite (parse-xml-file filename)]
@@ -58,14 +58,14 @@
   (filter (file-matches dir regex-or-string)
           (file-seq dir)))
 
-(defn junit4-reports [ctx cwd patterns]
-  (let [working-dir  (io/file cwd)
+(defn junit4-reports [ctx args path title patterns]
+  (let [working-dir (io/file (str (:cwd args) path))
         output-files (doall (->> patterns
                                  (map #(find-files-matching % working-dir))
                                  (flatten)
                                  (filter #(not (.isDirectory %)))))
-        file-details (map #(junit4-report-for-test-suite %) output-files)
-        details (:details ctx)]
-    (assoc ctx :details (into details
-                              [{:label   "Junit test results"
-                                :details file-details}]))))
+        file-details (doall (map #(junit4-report-for-test-suite %) output-files))
+        status (or (:status ctx) (:status args) :success)]
+    (hash-map :status status
+              :details [{:label   title
+                         :details file-details}])))
