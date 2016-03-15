@@ -1,4 +1,4 @@
-(defproject lambdacd-junit "0.2.0"
+(defproject lambdacd-junit "0.2.1-SNAPSHOT"
   :description "Junit reports in LambdaCD"
   :url "https://github.com/thilo11/lambdacd-junit"
   :license {:name "Apache License, version 2.0"
