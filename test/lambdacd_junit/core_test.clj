@@ -49,8 +49,8 @@
 \tat de.foocorp.MainClassTest.testPlus(MainClassTest.java:11)
 "})
                            :label   "de.foocorp.MainClassTest{:time \"0.0\", :hostname \"nb162\", :timestamp \"2016-02-25T12:32:46\", :errors \"0\", :failures \"1\", :skipped \"0\", :tests \"1\"}"})
-               :label   "Junit test results 1"})
-   :status :failure})
+               :label   "Junit test results"})
+   :status  :failure})
 
 (deftest testcase-from-raw-test
   (testing "testcase-from-raw-test"
@@ -64,8 +64,8 @@
 
 (deftest junit4-reports-test
   (testing "junit4-reports-test"
-    (let [ctx {:status :failure}
+    (let [shell-out {:status :failure}
           args {:cwd "./"}
           path "test-resources/"]
       (is (= report-out
-             (junit4-reports ctx args path "Junit test results 1" [#"TEST-.*"]))))))
+             (junit4-reports shell-out args path "Junit test results" [#"TEST-.*"]))))))

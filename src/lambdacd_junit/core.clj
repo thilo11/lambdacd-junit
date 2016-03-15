@@ -58,14 +58,12 @@
   (filter (file-matches dir regex-or-string)
           (file-seq dir)))
 
-(defn junit4-reports [ctx args path title patterns]
+(defn junit4-reports [shell-out args path title patterns]
   (let [working-dir (io/file (str (:cwd args) path))
         output-files (doall (->> patterns
                                  (map #(find-files-matching % working-dir))
                                  (flatten)
                                  (filter #(not (.isDirectory %)))))
         file-details (doall (map #(junit4-report-for-test-suite %) output-files))
-        status (or (:status ctx) (:status args) :success)]
-    (hash-map :status status
-              :details [{:label   title
-                         :details file-details}])))
+        details (:details shell-out)]
+    (assoc shell-out :details (into details [{:label title :details file-details}]))))
