@@ -43,6 +43,9 @@ to add unit and integration tests in a typical gradle based Java project you cou
       (junit4/junit4-reports args "/build/test-results/" "Integration Tests" [#"TEST-.+IntegrationTest.*"])))
 ```
 
+## Screenshot
+![LambdaCD with test reports](assets/pipeline-example.png "Pipeline with Unit tests and a failing Integration test")
+
 ## Related projects
 
 * [lambdacd](https://github.com/flosell/lambdacd): a library to define a continuous delivery pipeline in code

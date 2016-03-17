@@ -64,6 +64,6 @@
                                  (map #(find-files-matching % working-dir))
                                  (flatten)
                                  (filter #(not (.isDirectory %)))))
-        file-details (doall (map #(junit4-report-for-test-suite %) output-files))
+        file-details (map #(junit4-report-for-test-suite %) output-files)
         details (:details shell-out)]
     (assoc shell-out :details (into details [{:label title :details file-details}]))))
