@@ -26,8 +26,7 @@
   [raw]
   (merge
     (assoc (:attrs raw) :stacktrace (first (:content (first (:content raw)))))
-    (:attrs (first (:content raw))))
-  )
+    (:attrs (first (:content raw)))))
 
 (defn select-testcases-from-testsuite
   [testsuite]
