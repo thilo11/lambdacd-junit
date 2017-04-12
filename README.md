@@ -2,6 +2,8 @@
 
 A Clojure library to integrate Junit test reports in LambdaCD
 
+[![Build Status](https://travis-ci.org/thilo11/lambdacd-junit.svg?branch=master)](https://travis-ci.org/thilo11/lambdacd-junit)
+
 ## Usage
 * add `[lambdacd-junit "0.2.0"]` to your project dependencies 
 * require lambdacd-junit 
@@ -52,6 +54,6 @@ to add unit and integration tests in a typical gradle based Java project you cou
 
 ## License
 
-Copyright © 2016 Thilo Horstmann
+Copyright © 2016, 2017 Thilo Horstmann
 
 Distributed under the Apache License 2.0
