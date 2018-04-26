@@ -36,10 +36,17 @@
        (map #(?assoc {} :label (str (:name %) (dissoc % :name :stacktrace))
                      :raw (:stacktrace %)))))
 
+(defn- suite-to-map [testsuite]
+  (hash-map :label (str (:name (:attrs testsuite)) (dissoc (:attrs testsuite) :name))
+            :details (select-testcases-from-testsuite testsuite))
+  )
+
 (defn- junit4-report-for-test-suite [filename]
   (let [testsuite (parse-xml-file filename)]
-    (hash-map :label (str (:name (:attrs testsuite)) (dissoc (:attrs testsuite) :name))
-              :details (select-testcases-from-testsuite testsuite))))
+    (if (= (:tag testsuite) :testsuites)
+      (map suite-to-map (:content testsuite))
+      [(suite-to-map testsuite)])
+    ))
 
 (defn- relative-path [base-dir file]
   (let [base-path (Paths/get (.toURI base-dir))
@@ -63,6 +70,6 @@
                                  (map #(find-files-matching % working-dir))
                                  (flatten)
                                  (filter #(not (.isDirectory %)))))
-        file-details (map #(junit4-report-for-test-suite %) output-files)
+        file-details (flatten (map #(junit4-report-for-test-suite %) output-files))
         details (:details shell-out)]
     (assoc shell-out :details (into details [{:label title :details file-details}]))))
