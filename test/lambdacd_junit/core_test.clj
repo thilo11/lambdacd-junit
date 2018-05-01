@@ -52,6 +52,19 @@
                :label   "Junit test results"})
    :status  :failure})
 
+(def jest-report
+  {:details '({:details ({:details ({:label "can translate{:time \"0\", :classname \"Polyglot exploration test\"}"}
+                                    {:label "can translate nested{:time \"0\", :classname \"Polyglot exploration test\"}"}
+                                    {:label "can interpolate{:time \"0\", :classname \"Polyglot exploration test\"}"}),
+                         :label "/Users/alphonse.bendt/Projects/wish-list-ui/wish-list-ui-server/src/test/js/i18n/polyglot.test.js{:timestamp \"2018-04-26T14:50:12\", :time \"0.845\", :failures \"0\", :tests \"3\", :hostname \"localhost\", :package \"/Users/alphonse.bendt/Projects/wish-list-ui/wish-list-ui-server/src/test/js/i18n/polyglot.test.js\", :errors \"0\", :id \"0\"}"}
+                         {:details ({:label "can add product{:time \"0\", :classname \"ComparePanel\"}"}
+                                     {:label "can add product only once{:time \"0\", :classname \"ComparePanel\"}"}
+                                     {:label "can add multiple product{:time \"0\", :classname \"ComparePanel\"}"}
+                                     {:label "can remove products{:time \"0\", :classname \"ComparePanel\"}"}),
+                          :label "/Users/alphonse.bendt/Projects/wish-list-ui/wish-list-ui-server/src/test/js/compare/compare-panel.test.js{:timestamp \"2018-04-26T14:50:13\", :time \"0.478\", :failures \"0\", :tests \"4\", :hostname \"localhost\", :package \"/Users/alphonse.bendt/Projects/wish-list-ui/wish-list-ui-server/src/test/js/compare/compare-panel.test.js\", :errors \"0\", :id \"1\"}"}),
+              :label "Jest rest results"}),
+   :status :failure})
+
 (deftest testcase-from-raw-test
   (testing "testcase-from-raw-test"
     (is (= first-testcase
@@ -69,3 +82,13 @@
           path "test-resources/"]
       (is (= report-out
              (junit4-reports shell-out args path "Junit test results" [#"TEST-.*"]))))))
+
+(deftest jest-reports-test
+  (testing "jest-reports-test"
+           (let [shell-out {:status :failure}
+                 args {:cwd "./"}
+                 path "test-resources/"]
+
+             (is (= jest-report
+                    (junit4-reports shell-out args path "Jest rest results" [#"JEST-.*"])))
+             )))

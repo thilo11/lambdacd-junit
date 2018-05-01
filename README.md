@@ -48,6 +48,28 @@ to add unit and integration tests in a typical gradle based Java project you cou
 ## Screenshot
 ![LambdaCD with test reports](assets/pipeline-example.png "Pipeline with Unit tests and a failing Integration test")
 
+## JavaScript Example
+
+this example is based on _Jest_ (https://facebook.github.io/jest/) and _Jest Junit_ (https://github.com/palmerj3/jest-junit). 
+It should be easy to use different JavaScript testing tools as long as they are able to produce a junit report xml.
+
+Jest and Jest Junit need to be properly setup according to their documentation.
+
+```clojure
+(ns pipeline.steps
+  (:require
+    [clojure.java.io :as io]
+    [lambdacd-git.core :as core]
+    [lambdacd.steps.shell :as shell]
+    [lambdacd-junit.core :as junit4]))
+    
+(def javascript-jest-test-cmd "JEST_JUNIT_OUTPUT='./artifacts/junit.xml' jest --ci --testResultsProcessor='jest-junit'")
+
+(defn jest-test [args ctx]
+	(-> (shell/bash ctx (:cwd args) javascript-jest-test-cmd)
+		(junit4/junit4-reports args "/artifacts" "Jest Tests" [#"junit.xml"])))
+```
+		
 ## Related projects
 
 * [lambdacd](https://github.com/flosell/lambdacd): a library to define a continuous delivery pipeline in code
