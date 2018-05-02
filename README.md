@@ -5,7 +5,7 @@ A Clojure library to integrate Junit test reports in LambdaCD
 [![Build Status](https://travis-ci.org/thilo11/lambdacd-junit.svg?branch=master)](https://travis-ci.org/thilo11/lambdacd-junit)
 
 ## Usage
-* add `[lambdacd-junit "0.2.0"]` to your project dependencies 
+* add `[lambdacd-junit "0.3.0"]` to your project dependencies 
 * require lambdacd-junit 
 `(:require [lambdacd-junit.core :as junit4])`
 * and pass the LambdaCD context, the directory with the junit xml result files, and the test report file patterns to the junit4-reports function:
